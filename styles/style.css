@@ -1,0 +1,54 @@
+.container {
+    margin: auto;
+    padding: 16px;
+
+    @media (width > 480px) {
+        max-width: 480px;
+        padding: 10px;
+    }
+
+    @media (width > 768px) {
+        max-width: 744px;
+
+    }
+}
+
+@font-face {
+    font-family: "YekanBakh Reqular";
+    font-display: swap;
+    src: url("../assets/fonts/yekan-bakh/YekanBakh-Regular.woff2") format("woff2");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "YekanBakh SemiBold";
+    font-display: swap;
+    src: url("../assets/fonts/yekan-bakh/YekanBakh-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "YekanBakh Bold";
+    font-display: swap;
+    src: url("../assets/fonts/yekan-bakh/YekanBakh-Bold.woff2") format("woff2");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "YekanBakh Black";
+    font-display: swap;
+    src: url("../assets/fonts/yekan-bakh/YekanBakh-Black.woff2") format("woff2");
+    font-weight: 900;
+}
+
+body {
+    font-family: "YekanBakh SemiBold";
+}
+
+.title {
+    font-family: "YekanBakh Black";
+}
+
+.YekanBakhBold {
+    font-family: "YekanBakh Bold";
+}

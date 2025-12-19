@@ -1,19 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./styles/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
+    <link rel="stylesheet" href="./src/output.css">
 </head>
 
-<body>
-
+<body class="bg-white dark:bg-slate-950">
     <aside></aside>
-    <main></main>
+    <!-- App Main -->
+    <main class="overflow-hidden">
+        <div class="container">
+            <!-- Add Task -->
+            <section class="add-task flex flex-col gap-y-4">
+                <!-- Title & Subtitle -->
+                <div class="gap-y-1">
+                    <h2 class="text-base md:text-xl title dark:text-white">تسک‌های امروز</h2>
+                    <span class="text-xs md:text-sm text-gray-400">تسکی برای امروز نداری!</span>
+                    <span class="hidden text-xs md:text-sm text-gray-400">3 تسک را باید انجام دهید.</span>
+                </div>
+                <!-- Add Task -->
+                <div
+                    class="flex items-center gap-x-2 dark:bg-slate-900 text-blue-500 dark:text-blue-400 border border-dashed border-gray-300 dark:border-blue-300 rounded-lg p-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    <span class="text-sm YekanBakhBold">افزودن وظیفه جدید</span>
+                </div>
+            </section>
+            <!-- Main Wrapper -->
+            <section class="wrapper">
+                <!-- No Task -->
+                <div class="no-task flex flex-col justify-center items-center gap-y-6 mt-9.5">
+                    <div>
+                        <img src="./assets/images/mobile.png" class="md:hidden" alt="no-task-mobile">
+                        <img src="./assets/images/desctop.png" class="hidden md:block" alt="no-task-desctop">
+                    </div>
+                    <div class="flex flex-col justify-center items-center gap-y-2 masw">
+                        <h2 class="text-base md:text-base text-gray-500 dark:text-neutral-400">چه کارهایی امروز برای
+                            انجام
+                            داری؟</h2>
+                        <span class="text-sm md:text-sm text-gray-300 dark:text-gray-500 max-w-[273px] md:max-w-none text-center">میتونی
+                            الان تسک‌هاتو
+                            اینجا بنویسی
+                            و برنامه
+                            ریزی رو شروع
+                            کنی!</span>
+                    </div>
+                </div>
+                <!-- Task -->
+                <div class="task">
+
+                </div>
+            </section>
+
+        </div>
+    </main>
     <script src="./scripts/main.js"></script>
 </body>
 

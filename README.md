@@ -8,5 +8,5 @@ The guide to using this project will be posted in this section soon.
 
 Project photo
 
-![Project Management]([https://i.imgur.com/v8IVDka.jpg](https://s34.picofile.com/file/8488705742/%D9%85%D8%AF%DB%8C%D8%B1%DB%8C%D8%AA_%D9%BE%D8%B1%D9%88%DA%98%D9%87.png))
+![Project Management photo](https://s34.picofile.com/file/8488705742/%D9%85%D8%AF%DB%8C%D8%B1%DB%8C%D8%AA_%D9%BE%D8%B1%D9%88%DA%98%D9%87.png)
 

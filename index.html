@@ -6,11 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./styles/style.css">
+
     <link rel="stylesheet" href="./src/output.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
 <body class="bg-[#fefefe] dark:bg-slate-950">
+    <header>
+        <nav>
+            <!-- for mobile client -->
+            <div class="flex bg-white px-4 py-2.5 h-12 min-[328px]:hidden ">
+                <ul class="flex flex-col absolute top-1 right-[-300px] z-10">
+                </ul>
+                <svg class="dark:bg-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 7H21" stroke="#292D32" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M3 12H21" stroke="#292D32" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M3 17H21" stroke="#292D32" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <!-- for desktop client -->
+            <div class="hidden min-[329px]:flex">
+                <ul>
+                </ul>
+            </div>
+        </nav>
+    </header>
     <aside></aside>
     <!-- App Main -->
     <main class="overflow-hidden">

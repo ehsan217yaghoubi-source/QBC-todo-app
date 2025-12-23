@@ -54,24 +54,54 @@
                     <span class="text-sm YekanBakhBold">افزودن وظیفه جدید</span>
                 </div>
             </section>
+            <!-- Add Task by caption -->
+            <section>
+                <div class="flex flex-col items-start border border-[#e9e9e9] rounded-xl bg-white mt-2.5 shadow-[0px_4px_58.5px_0px_rgba(0,_0,_0,_0.06)] dark:bg-[#060c18] dark:border-[#3d3d3d] dark:shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)]">
+                    <input type="text" class="w-full outline-none text-base text-[#7d7d7f] font-bold pr-4 mt-4 dark:text-white" placeholder="نام وظیفه">
+                    <textarea class="w-full outline-none text-sm font-normal text-[#afaeb2] pr-4 mt-2 dark:text-[#848890]" placeholder="توضیحات"></textarea>
+                    <div class="flex justify-start cursor-pointer mr-4 px-2 py-1.25 border border-[#e9e9e9] rounded">
+                        <svg class="" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <rect width="20" height="20" transform="matrix(0 1 -1 0 20 0)" fill="white"/>
+                            <path d="M17.416 3.51661V13.0499C17.416 13.6166 17.0243 14.325 16.541 14.625L10.9743 18.1083C10.4327 18.4416 9.58268 18.4083 9.07435 18.025L3.32435 13.7083C2.91602 13.4 2.58268 12.7333 2.58268 12.225V3.51661C2.58268 2.05828 4.18268 1.17498 5.42435 1.94165L9.11601 4.24995C9.60768 4.55828 10.4077 4.55828 10.8993 4.24995L14.591 1.94165C15.816 1.17498 17.416 2.06661 17.416 3.51661Z" fill="#AFAEB2" stroke="#AFAEB2" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="text-[#AFAEB2]">تگ‌ها</p>
+                    </div>
+                    <div class="flex items-center mr-4 mb-6 mt-6 p-2.5 border border-[#EBEDEF] rounded-lg shadow-[0px_12px_24px_-6px_rgba(20,_20,_25,_6%)]">
+                        <span class="text-right text-sm font-semibold cursor-pointer bg-[#C3FFF1] text-[#11A483] px-2 py-1 rounded dark:bg-[#233332] dark:text-[#02E1A2]">پایین</span>
+                        <span class="px-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1" height="20" viewBox="0 0 1 20" fill="none">
+                              <line x1="0.5" x2="0.5" y2="20" stroke="#EBEDEF"/>
+                            </svg>
+                        </span>
+                        <span class="text-right text-sm font-semibold cursor-pointer bg-[#ffefd6] text-[#ffaf37] px-2 py-1 rounded dark:bg-[#233332] dark:text-[#02E1A2]">متوسط</span>
+                        <span class="px-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1" height="20" viewBox="0 0 1 20" fill="none">
+                              <line x1="0.5" x2="0.5" y2="20" stroke="#EBEDEF"/>
+                            </svg>
+                        </span>
+                        <span class="text-right text-sm font-semibold cursor-pointer bg-[#ffe2db] text-[#ff5f37] px-2 py-1 rounded dark:bg-[#233332] dark:text-[#02E1A2]">بالا</span>
+                    </div>
+                    <span class="self-stretch border-t border-t-[#e9e9e9] dark:border-t-[#3d3d3d]"></span>
+                    <button type="submit" class="self-end mb-4 ml-4 mt-5 px-4 py-1.5 rounded-md bg-[#66b0ff] text-white cursor-pointer dark:bg-[#002247]">اضافه کردن وظیفه</button>
+                </div>
+            </section>
             <!-- Edit Task -->
             <section>
                 <div class="flex flex-col items-start border border-[#e9e9e9] rounded-xl bg-white mt-2.5 shadow-[0px_4px_58.5px_0px_rgba(0,_0,_0,_0.06)] dark:bg-[#060c18] dark:border-[#3d3d3d] dark:shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)]">
                     <h3 class="text-base text-[#242424] font-bold mr-4 mt-4 dark:text-white">تماس با جمشید</h3>
                     <p class="text-sm font-normal text-[#646464] mr-4 mt-2 dark:text-[#848890]">باید در مورد کارهای باقیمانده از پروژه قبلی صحبت کنیم.</p>
                     <span class="text-right text-sm font-semibold bg-[#C3FFF1] text-[#11A483] px-2 py-1 mr-4 mb-6 mt-6 rounded dark:bg-[#233332] dark:text-[#02E1A2]">
-                        <svg class="inline-block ml-1.5 dark:hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <svg class="inline-block ml-1.5 cursor-pointer dark:hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M6.66406 13.3334L13.3307 6.66675" stroke="#323233" stroke-width="0.999925" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M13.3307 13.3334L6.66406 6.66675" stroke="#323233" stroke-width="0.999925" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        <svg class="hidden dark:inline-block dark:ml-1.5" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <svg class="hidden cursor-pointer dark:inline-block dark:ml-1.5" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M6.66406 13.3334L13.3307 6.66675" stroke="white" stroke-width="0.999925" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M13.3307 13.3334L6.66406 6.66675" stroke="white" stroke-width="0.999925" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                         پایین
                     </span>
                     <span class="self-stretch border-t border-t-[#e9e9e9] dark:border-t-[#3d3d3d]"></span>
-                    <button type="submit" class="self-end mb-4 ml-4 mt-5 px-4 py-1.5 rounded-md bg-[#007BFF] text-white dark:bg-[#002247]">ویرایش وظیفه</button>
                     <button type="submit" class="self-end mb-4 ml-4 mt-5 px-4 py-1.5 rounded-md bg-[#007BFF] text-white cursor-pointer dark:bg-[#002247]">ویرایش وظیفه</button>
                 </div>
             </section>

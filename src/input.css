@@ -1,1 +1,63 @@
 @import "tailwindcss";
+
+@theme {
+    --color-compeletedTask : #007BFF;
+    --color-trashEdit: #5C5F61;
+    --color-trashEditBg: #0B192D;
+    --color-compeletedBg: #091120;
+    --color-highPriority: #3D2327;
+    --color-mediumPriority: #302F2D;
+    --color-lowPriority: #233332;
+
+    --font-YekanBakhRegular: "YekanBakh Reqular";
+    --font-YekanBakhSemiBold: "YekanBakh SemiBold";
+    --font-YekanBakhBold: "YekanBakh Bold";
+    --font-YekanBakhBlack: "YekanBakh Black";
+}
+
+@utility container {
+    @apply mx-auto px-4;
+}
+
+
+.container {
+    @media (width > 480px) {
+        max-width: 480px;
+    }
+
+    @media (width > 768px) {
+        max-width: 744px;
+
+    }
+}
+
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+    font-family: "YekanBakh Reqular";
+    font-display: swap;
+    src: url("../assets/fonts/yekan-bakh/YekanBakh-Regular.woff2") format("woff2");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "YekanBakh SemiBold";
+    font-display: swap;
+    src: url("../assets/fonts/yekan-bakh/YekanBakh-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "YekanBakh Bold";
+    font-display: swap;
+    src: url("../assets/fonts/yekan-bakh/YekanBakh-Bold.woff2") format("woff2");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "YekanBakh Black";
+    font-display: swap;
+    src: url("../assets/fonts/yekan-bakh/YekanBakh-Black.woff2") format("woff2");
+    font-weight: 900;
+}

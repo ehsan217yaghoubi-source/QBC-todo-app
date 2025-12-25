@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-    --color-compeletedTask : #007BFF;
+    --color-dark: #060C18;
+    --color-compeletedTask: #007BFF;
     --color-trashEdit: #5C5F61;
     --color-trashEditBg: #0B192D;
     --color-compeletedBg: #091120;
@@ -13,6 +14,8 @@
     --font-YekanBakhSemiBold: "YekanBakh SemiBold";
     --font-YekanBakhBold: "YekanBakh Bold";
     --font-YekanBakhBlack: "YekanBakh Black";
+
+    --breakpoint-side: 85rem;
 }
 
 @utility container {

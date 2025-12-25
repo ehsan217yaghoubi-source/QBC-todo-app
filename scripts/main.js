@@ -1,3 +1,4 @@
+// dark mode logic
 const lightModeBtn = document.querySelector(".light-mode");
 const darkModeBtn = document.querySelector(".dark-mode");
 const navOpenBtn = document.querySelector(".nav-icon");
@@ -22,6 +23,9 @@ window.addEventListener("load", () => {
   }
 });
 
+
+
+// sidebar logic
 navOpenBtn.addEventListener("click", function(){
     nav.classList.remove("translate-x-full")
     // nav.classList.remove("-right-68")

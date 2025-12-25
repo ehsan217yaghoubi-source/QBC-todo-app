@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="./src/output.css" />
   </head>
 
   <body class="bg-white dark:bg-gray-950 font-YekanBakhBold">
     <!-- App Aside -->
     <aside
-      class="nav hidden side:block fixed w-68 h-246 top-5 right-5 bg-white rounded-2xl shadow-[0px_4px_58.5px_0px_rgba(0,0,0,0.06)] z-50 overflow-y-auto dark:bg-compeletedBg"
+      class="fixed top-[24px] right-[-280px] md:right-[19px] bottom-[10px] w-64 max-h-[calc(100vh-40px)] overflow-y-hidden rounded-xl bg-white shadow-[0_4px_12px_rgba(0,0,0,0.15)] z-20 dark:bg-[#091120]"
     >
       <!-- Aside Top -->
       <div class="flex items-center justify-center gap-x-3 md:mt-14">
@@ -344,7 +344,7 @@
         </ul>
       </div>
       <!-- Aside Footer-->
-      <div class="mt-44 relative">
+      <div class="mt-32 relative">
         <!-- Toggle Theme Btn -->
         <div
           class="flex items-center justify-between gap-x-1 bg-[#F7F7F7] dark:bg-[#0C1B31] dark:text-white p-1 mx-8 rounded-lg"
@@ -394,47 +394,27 @@
             <span class="font-YekanBakhSemiBold text-sm">تاریک</span>
           </div>
         </div>
-        <!-- Devide -->
-        <span
-          class="absolute mx-auto h-px w-52 inset-0 top-16 bg-gray-200 dark:bg-trashEdit"
-        ></span>
-        <!-- Log Out -->
-        <div class="mt-12 mr-8">
-          <a
-            href="#"
-            class="flex items-center gap-x-4 text-[#525252] dark:text-white"
-          >
+        <!-- logout -->
+        <a
+          href="#"
+          class="flex items-center mt-5 p-3 rounded-md text-gray-600 dark:text-white"
+        >
+          <span class="ml-4 text-xl">
             <svg
-              class="size-5"
-              viewBox="0 0 20 20"
-              fill="none"
+              class="text-current"
               xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
             >
               <path
-                d="M7.41699 6.29995C7.67533 3.29995 9.21699 2.07495 12.592 2.07495H12.7003C16.4253 2.07495 17.917 3.56662 17.917 7.29162V12.725C17.917 16.45 16.4253 17.9416 12.7003 17.9416H12.592C9.24199 17.9416 7.70033 16.7333 7.42533 13.7833"
-                stroke="currentColor"
-                stroke-width="1.25"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M12.4999 10H3.0166"
-                stroke="currentColor"
-                stroke-width="1.25"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M4.87467 7.20837L2.08301 10L4.87467 12.7917"
-                stroke="currentColor"
-                stroke-width="1.25"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                fill="currentColor"
+                d="M5 21q-.825 0-1.412-.587T3 19v-4h2v4h14V5H5v4H3V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21zm5.5-4l-1.4-1.45L11.65 13H3v-2h8.65L9.1 8.45L10.5 7l5 5z"
               />
             </svg>
-            <span class="font-YekanBakhSemiBold text-sm">خروج</span>
-          </a>
-        </div>
+          </span>
+          خروج
+        </a>
       </div>
     </aside>
 

@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     todosWrapper.innerHTML = todos
       .map((todo) => {
         return `
-        <div class="relative border border-gray-200 dark:border-none dark:bg-compeletedBg mt-4 rounded-xl">
+        <div data-id="${todo.id}" class="relative border border-gray-200 dark:border-none dark:bg-compeletedBg mt-4 rounded-xl">
           <!-- Side Line -->
           <span class="${
             todo.priority === "بالا"
@@ -253,4 +253,71 @@ document.addEventListener("DOMContentLoaded", () => {
 
     overlay.classList.remove("overlay-visible");
   });
+
+    // حذف تسک
+  todosWrapper.addEventListener("click", (e) => {
+    const trashBtn = e.target.closest(".trash-edit-wrapper svg:first-child");
+    if (!trashBtn) return;
+
+    const taskDiv = e.target.closest("[data-id]");
+    if (!taskDiv) return;
+
+    const id = Number(taskDiv.getAttribute("data-id"));
+    todos = todos.filter((todo) => todo.id !== id);
+    saveTodos();
+    renderTodos();
+  });
+
+
+  // ویرایش تسک
+  todosWrapper.addEventListener("click", (e) => {
+    const editBtn = e.target.closest(".trash-edit-wrapper svg:last-child");
+    if (!editBtn) return;
+
+    const taskDiv = e.target.closest("[data-id]");
+    if (!taskDiv) return;
+
+    const id = Number(taskDiv.getAttribute("data-id"));
+    const todo = todos.find((t) => t.id === id);
+    if (!todo) return;
+
+    const editSection = document.querySelector("section.hidden");
+    if (!editSection) return;
+
+    editSection.classList.remove("hidden");
+
+    const inputs = editSection.querySelectorAll("input[type=text]");
+    if (inputs.length < 2) return;
+
+    inputs[0].value = todo.title;
+    inputs[1].value = todo.description;
+
+    const editSubmitBtn = editSection.querySelector("button[type=submit]");
+    if (!editSubmitBtn) return;
+
+    // حذف رویداد قبلی با cloneNode
+    const newEditSubmitBtn = editSubmitBtn.cloneNode(true);
+    editSubmitBtn.parentNode.replaceChild(newEditSubmitBtn, editSubmitBtn);
+
+    newEditSubmitBtn.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const newTitle = inputs[0].value.trim();
+      const newDesc = inputs[1].value.trim();
+
+      if (!newTitle || !newDesc) return;
+
+      todo.title = newTitle;
+      todo.description = newDesc;
+
+      saveTodos();
+      renderTodos();
+
+      editSection.classList.add("hidden");
+    });
+  });
+ 
+
+
+
 });

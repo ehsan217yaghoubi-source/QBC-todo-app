@@ -253,4 +253,97 @@ document.addEventListener("DOMContentLoaded", () => {
 
     overlay.classList.remove("overlay-visible");
   });
+
+  document.addEventListener("click", (e) => {
+    const checkbox = e.target;
+
+    // complete
+    if (checkbox.type !== "checkbox") return;
+
+    const taskCard = checkbox.closest(".relative");
+    if (!taskCard) return;
+
+    const isInActiveSection = taskCard.closest(".todos-wrapper");
+    const isInCompletedSection = taskCard.closest(".Task-Compeleted > div");
+
+    const todayTasksTitle = document.querySelector(
+      ".add-task .gap-y-1 span:nth-child(2)"
+    );
+    const completedTasksTitle = document.querySelector(
+      ".Task-Compeleted .gap-y-1 span:nth-child(2)"
+    );
+
+    if (isInActiveSection) {
+      checkbox
+        .closest(".flex")
+        ?.querySelector("h3")
+        ?.classList.add("line-through");
+
+      const activeTasks = document.querySelectorAll(
+        ".todos-wrapper .relative"
+      ).length;
+      const completedTasks = document.querySelectorAll(
+        ".Task-Compeleted > div .relative"
+      ).length;
+
+      if (activeTasks === 1) {
+        todayTasksTitle.textContent = "تسکی برای امروز نداری!";
+      } else {
+        todayTasksTitle.textContent = `${
+          activeTasks - 1
+        } تسک را باید انجام دهید.`;
+      }
+
+      completedTasksTitle.textContent = `${
+        completedTasks + 1
+      } تسک انجام شده است.`;
+
+      checkbox.remove();
+      const taskContent = taskCard.querySelector(".flex");
+      const newCheckbox = document.createElement("input");
+      newCheckbox.type = "checkbox";
+      newCheckbox.className = "accent-blue-600 size-4.5 cursor-pointer";
+      newCheckbox.checked = true;
+      taskContent.insertBefore(newCheckbox, taskContent.firstChild);
+
+      const completedSection = document.querySelector(".Task-Compeleted > div");
+      completedSection.appendChild(taskCard);
+    } else if (isInCompletedSection) {
+      checkbox
+        .closest(".flex")
+        ?.querySelector("h3")
+        ?.classList.remove("line-through");
+
+      const activeTasks = document.querySelectorAll(
+        ".todos-wrapper .relative"
+      ).length;
+      const completedTasks = document.querySelectorAll(
+        ".Task-Compeleted > div .relative"
+      ).length;
+
+      if (activeTasks === 1) {
+        todayTasksTitle.textContent = "1 تسک را باید انجام دهید.";
+      } else {
+        todayTasksTitle.textContent = `${
+          activeTasks + 1
+        } تسک را باید انجام دهید.`;
+      }
+
+      if (completedTasks === 0) {
+        completedTasksTitle.textContent = "هیچ تسک انجام شده‌ای وجود ندارد.";
+      } else {
+        completedTasksTitle.textContent = `${completedTasks} تسک انجام شده است.`;
+      }
+
+      checkbox.remove();
+      const taskContent = taskCard.querySelector(".flex");
+      const newCheckbox = document.createElement("input");
+      newCheckbox.type = "checkbox";
+      newCheckbox.className = "accent-blue-600 size-4.5 cursor-pointer";
+      taskContent.insertBefore(newCheckbox, taskContent.firstChild);
+
+      const activeSection = document.querySelector(".todos-wrapper");
+      activeSection.appendChild(taskCard);
+    }
+  });
 });

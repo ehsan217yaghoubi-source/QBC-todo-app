@@ -60,9 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let selectedPriority = "پایین";
 
   function renderTodos() {
+    todosWrapper.innerHTML = "";
     if (todos.length === 0) {
       noTask.classList.remove("hidden");
-      todosWrapper.innerHTML = "";
       return;
     }
     noTask.classList.add("hidden");
@@ -70,7 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
     todosWrapper.innerHTML = todos
       .map((todo) => {
         return `
-        <div class="relative border border-gray-200 dark:border-none dark:bg-compeletedBg mt-4 rounded-xl">
+        <div class="relative border border-gray-200 dark:border-none dark:bg-compeletedBg mt-4 rounded-xl" data-id="${
+          todo.id
+        }">
           <!-- Side Line -->
           <span class="${
             todo.priority === "بالا"
@@ -82,11 +84,11 @@ document.addEventListener("DOMContentLoaded", () => {
           <!-- Task Content -->
           <div class="flex p-3 md:p-6 gap-x-4">
             <!-- Checkbox -->
-            <input type="checkbox" class="accent-blue-600 size-4.5 cursor-pointer">
+            <input type="checkbox" class="accent-blue-600 size-4.5 cursor-pointer todo-checkbox ">
             <!-- Title & Subtitle & Priority -->
             <div class="flex flex-col gap-y-4">
               <div class="flex flex-col items-start justify-start md:flex-row md:gap-x-3 md:items-center gap-y-1">
-                <h3 class="font-YekanBakhSemiBold text-sm md:text-base dark:text-white">${
+                <h3 class="font-YekanBakhSemiBold text-sm md:text-base dark:text-white ">${
                   todo.title
                 }</h3>
                 <span class="${
@@ -115,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div
                 class="trash-edit-wrapper hidden absolute items-center justify-center border border-gray-200 dark:border-trashEdit dark:bg-trashEditBg rounded-lg top-full left-0 p-1 gap-x-2.5">
                 <!-- Trash Button -->
-                <svg class="md:cursor-pointer text-trashEdit dark:text-white" width="24" height="24"
+                <svg class="delete-btn md:cursor-pointer text-trashEdit dark:text-white" width="24" height="24"
                   viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M4 7H20M5 7L6 19C6 19.5304 6.21071 20.0391 6.58579 20.4142C6.96086 20.7893 7.46957 21 8 21H16C16.5304 21 17.0391 20.7893 17.4142 20.4142C17.7893 20.0391 18 19.5304 18 19L19 7M9 7V4C9 3.73478 9.10536 3.48043 9.29289 3.29289C9.48043 3.10536 9.73478 3 10 3H14C14.2652 3 14.5196 3.10536 14.7071 3.29289C14.8946 3.48043 15 3.73478 15 4V7M10 12L14 16M14 12L10 16"
@@ -124,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <!-- Devide -->
                 <span class="w-px h-5 bg-gray-200 dark:bg-trashEdit"></span>
                 <!-- Edit Button -->
-                <svg class="md:cursor-pointer text-trashEdit dark:text-white" width="24" height="24"
+                <svg class="edit-btn md:cursor-pointer text-trashEdit dark:text-white" width="24" height="24"
                   viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M7 7H6C5.46957 7 4.96086 7.21071 4.58579 7.58579C4.21071 7.96086 4 8.46957 4 9V18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20H15C15.5304 20 16.0391 19.7893 16.4142 19.4142C16.7893 19.0391 17 18.5304 17 18V17"
@@ -144,13 +146,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   addNewTodo.addEventListener("click", () => {
     newTaskContent.classList.remove("hidden");
+    noTask.classList.add("hidden");
     localStorage.setItem("isAddTaskOpen", "true");
   });
 
+  const todoTitleInput = document.querySelector(".todo-title");
+  const todoDescriptionInput = document.querySelector(".todo-description");
   addTodoBtn.addEventListener("click", () => {
-    const todoTitleInput = document.querySelector(".todo-title");
-    const todoDescriptionInput = document.querySelector(".todo-description");
-
     if (!todoTitleInput.value.trim()) return;
     if (!todoDescriptionInput.value.trim()) return;
 
@@ -159,6 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
       title: todoTitleInput.value,
       description: todoDescriptionInput.value,
       priority: selectedPriority,
+      isCompleted: false,
     };
 
     todos.push(todo);
@@ -220,7 +223,37 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   todosWrapper.addEventListener("click", (e) => {
+    const deleteBtn = e.target.closest(".delete-btn");
+    const editBtn = e.target.closest(".edit-btn");
     const pointsBtn = e.target.closest(".points-btn");
+
+    if (deleteBtn) {
+      const todoElem = deleteBtn.closest("[data-id]");
+      const todoId = Number(todoElem.dataset.id);
+
+      todos = todos.filter((todo) => todo.id !== todoId);
+      saveTodos();
+      renderTodos();
+      return;
+    }
+
+    if (editBtn) {
+      const todoItem = editBtn.closest("[data-id]");
+      const todoId = Number(todoItem.dataset.id);
+
+      const editSection = document.querySelector(".edit-section");
+      const todoEdit = todos.find((t) => t.id === todoId);
+
+      editSection.dataset.todoId = todoId;
+
+      document.querySelector(".edit-todo-title").value = todoEdit.title;
+      document.querySelector(".edit-todo-desc").value = todoEdit.description;
+
+      todoItem.insertAdjacentElement("afterend", editSection);
+      editSection.classList.toggle("hidden");
+
+      return;
+    }
 
     if (!pointsBtn) return;
 
@@ -238,6 +271,24 @@ document.addEventListener("DOMContentLoaded", () => {
     deleteLastPriority();
   });
 
+  document.querySelector(".edit-task-btn").addEventListener("click", () => {
+    const editSection = document.querySelector(".edit-section");
+    const todoId = Number(editSection.dataset.todoId);
+
+    const title = document.querySelector(".edit-todo-title").value;
+    const desc = document.querySelector(".edit-todo-desc").value;
+
+    const todoIndex = todos.findIndex((t) => t.id === todoId);
+
+    if (todoIndex !== -1) {
+      todos[todoIndex].title = title;
+      todos[todoIndex].description = desc;
+    }
+
+    saveTodos();
+    renderTodos();
+  });
+
   // Aside
 
   navOpenBtn.addEventListener("click", function () {
@@ -253,4 +304,107 @@ document.addEventListener("DOMContentLoaded", () => {
 
     overlay.classList.remove("overlay-visible");
   });
+
+  // complete
+  document.addEventListener("click", (e) => {
+    const checkbox = e.target;
+
+    if (checkbox.type !== "checkbox") return;
+
+    const taskCard = checkbox.closest(".relative");
+    if (!taskCard) return;
+
+    const isInActiveSection = taskCard.closest(".todos-wrapper");
+    const isInCompletedSection = taskCard.closest(".Task-Compeleted > div");
+
+    const todayTasksTitle = document.querySelector(
+      ".add-task .gap-y-1 span:nth-child(2)"
+    );
+    const completedTasksTitle = document.querySelector(
+      ".Task-Compeleted .gap-y-1 span:nth-child(2)"
+    );
+
+    if (isInActiveSection) {
+      checkbox
+        .closest(".flex")
+        ?.querySelector("h3")
+        ?.classList.add("line-through");
+
+      const activeTasks = document.querySelectorAll(
+        ".todos-wrapper .relative"
+      ).length;
+      const completedTasks = document.querySelectorAll(
+        ".Task-Compeleted > div .relative"
+      ).length;
+
+      todayTasksTitle.textContent = `${
+        activeTasks - 1
+      } تسک را باید انجام دهید.`;
+
+      completedTasksTitle.textContent = `${
+        completedTasks + 1
+      } تسک انجام شده است.`;
+
+      checkbox.remove();
+      const taskContent = taskCard.querySelector(".flex");
+      const newCheckbox = document.createElement("input");
+      newCheckbox.type = "checkbox";
+      newCheckbox.className = "accent-blue-600 size-4.5 cursor-pointer";
+      newCheckbox.checked = true;
+      taskContent.insertBefore(newCheckbox, taskContent.firstChild);
+
+      const completedSection = document.querySelector(".Task-Compeleted > div");
+      completedSection.appendChild(taskCard);
+    } else if (isInCompletedSection) {
+      checkbox
+        .closest(".flex")
+        ?.querySelector("h3")
+        ?.classList.remove("line-through");
+
+      const activeTasks = document.querySelectorAll(
+        ".todos-wrapper .relative"
+      ).length;
+      const completedTasks = document.querySelectorAll(
+        ".Task-Compeleted > div .relative"
+      ).length;
+
+      todayTasksTitle.textContent = `${
+        activeTasks + 1
+      } تسک را باید انجام دهید.`;
+
+      if (completedTasks === 0) {
+        completedTasksTitle.textContent = "هیچ تسک انجام شده‌ای وجود ندارد.";
+      } else {
+        completedTasksTitle.textContent = `${
+          completedTasks - 1
+        } تسک انجام شده است.`;
+      }
+
+      checkbox.remove();
+      const taskContent = taskCard.querySelector(".flex");
+      const newCheckbox = document.createElement("input");
+      newCheckbox.type = "checkbox";
+      newCheckbox.className = "accent-blue-600 size-4.5 cursor-pointer";
+      taskContent.insertBefore(newCheckbox, taskContent.firstChild);
+
+      const activeSection = document.querySelector(".todos-wrapper");
+      activeSection.appendChild(taskCard);
+    }
+  });
+
+  const today = new Date();
+
+  const weekday = new Intl.DateTimeFormat("fa-IR", { weekday: "long" }).format(
+    today
+  );
+  const month = new Intl.DateTimeFormat("fa-IR", { month: "long" }).format(
+    today
+  );
+  const day = today.toLocaleDateString("fa-IR", { day: "numeric" });
+  const year = today.toLocaleDateString("fa-IR", { year: "numeric" });
+
+  const persianDate = `${weekday} ${day} ${month} ${year}`;
+
+  document.getElementById("date-desctop").innerHTML = persianDate;
+  document.getElementById("date-mobile").innerHTML = persianDate;
 });

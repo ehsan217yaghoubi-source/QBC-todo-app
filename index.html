@@ -84,7 +84,7 @@
       <img src="./assets/images/Ellipse 136.png" alt="Ellipse" class="hidden lg:block">
       <div class="dark:text-[#FFFFFF] hidden lg:block">
         <p class="text-lg">سلام،رویا</p>
-        <p class="font-YekanBakhSemiBold text-sm text-gray-400">سه شنبه 5 بهمن 1402 </p>
+        <p class="font-YekanBakhSemiBold text-sm text-gray-400" id="date-desctop"></p>
       </div>
     </div>
     <div class="flex lg:hidden items-center justify-between px-4 pt-6 dark:text-white">
@@ -290,7 +290,7 @@
             <img src="./assets/images/Ellipse 136.png" alt="Ellipse">
             <div class="dark:text-[#FFFFFF] ">
               <p class="text-lg">سلام،رویا</p>
-              <p class="font-YekanBakhSemiBold text-sm text-gray-400 dark:text-trashEdit">سه شنبه 5 بهمن 1402 </p>
+              <p class="font-YekanBakhSemiBold text-sm text-gray-400 dark:text-trashEdit" id="date-mobile"></p>
             </div>
           </div>
         </div>
@@ -299,11 +299,9 @@
       <section class="add-task flex flex-col gap-y-4 mt-15 lg:mt-20">
         <!-- Title & Subtitle -->
         <div class="gap-y-1">
-          <h2 class="text-base md:text-xl font-YekanBakhBlack dark:text-white">
-            تسک‌های امروز
-          </h2>
-          <span class="text-xs md:text-sm text-gray-400">تسکی برای امروز نداری!</span>
-          <span class="hidden text-xs md:text-sm text-gray-400">3 تسک را باید انجام دهید.</span>
+          <h2 class="text-base md:text-xl font-YekanBakhBlack dark:text-white">تسک‌های امروز</h2>
+          <span class="no-task-active text-xs md:text-sm text-gray-400"></span>
+          <span class="task-active hidden text-xs md:text-sm text-gray-400">تسک را باید انجام دهید</span>
         </div>
         <!-- Add Task -->
         <div
@@ -389,15 +387,10 @@
         </div>
 
         <!-- Edit Task -->
-        <section class="hidden">
-          <div
-            class="flex flex-col items-start border border-[#e9e9e9] rounded-xl bg-white mt-2.5 shadow-[0px_4px_58.5px_0px_rgba(0,_0,_0,_0.06)] dark:bg-[#060c18] dark:border-[#3d3d3d] dark:shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)]">
-            <input type="text"
-              class="w-full outline-none text-base text-[#242424] dark:text-white placeholder:text-[#242424] font-bold pr-4 mt-4 dark:placeholder:text-white"
-              placeholder="تماس با جمشید" />
-            <input type="text"
-              class="w-full outline-none text-sm font-normal text-[#646464] placeholder:text-[#646464]  pr-4 mt-4 dark:text-white"
-              placeholder="باید در مورد کارهای باقیمانده از پروژه قبلی صحبت کنیم." />
+        <section class="edit-section hidden">
+          <div class=" flex flex-col items-start border border-[#e9e9e9] rounded-xl bg-white mt-2.5 shadow-[0px_4px_58.5px_0px_rgba(0,_0,_0,_0.06)] dark:bg-[#060c18] dark:border-[#3d3d3d] dark:shadow-[0px_4px_4px_0px_rgba(0,_0,_0,_0.25)]">
+            <input type="text" class="edit-todo-title w-full outline-none text-base text-[#242424] dark:text-white placeholder:text-[#242424] font-bold pr-4 mt-4 dark:placeholder:text-white" placeholder="" />
+            <input type="text" class="edit-todo-desc w-full outline-none text-sm font-normal text-[#646464] placeholder:text-[#646464]  pr-4 mt-4 dark:text-white" placeholder="" />
             <span
               class="text-right text-sm font-semibold bg-[#C3FFF1] text-[#11A483] px-2 py-1 mr-4 mb-6 mt-6 rounded dark:bg-[#233332] dark:text-[#02E1A2]">
               <svg class="inline-block ml-1.5 cursor-pointer dark:hidden" xmlns="http://www.w3.org/2000/svg" width="20"
@@ -417,100 +410,19 @@
               پایین
             </span>
             <span class="self-stretch border-t border-t-[#e9e9e9] dark:border-t-[#3d3d3d]"></span>
-            <button type="submit"
-              class="self-end mb-4 ml-4 mt-5 px-4 py-1.5 rounded-md bg-[#007BFF] text-white cursor-pointer dark:bg-[#002247]">ویرایش
-              تسک</button>
+            <button type="submit" class="edit-task-btn self-end mb-4 ml-4 mt-5 px-4 py-1.5 rounded-md bg-[#007BFF] text-white cursor-pointer dark:bg-[#002247]">ویرایش تسک</button>
           </div>
         </section>
 
         <!-- Task Compeleted -->
         <div class="Task-Compeleted mt-16 mb-10">
-          <div>
+          <div class="completed-container">
             <!-- Title & Subtitle -->
             <div class="gap-y-1">
-              <h2 class="text-base md:text-xl font-YekanBakhBlack dark:text-white">
-                تسک‌های انجام شده
-              </h2>
-              <span class="text-xs md:text-sm text-gray-400">3 تسک انجام شده است.</span>
+              <h2 class="text-base md:text-xl font-YekanBakhBlack dark:text-white">تسک‌های انجام شده</h2>
+              <span class="text-xs md:text-sm text-gray-400"></span>
             </div>
             <!-- Task -->
-            <div class="relative border border-gray-200 dark:border-none dark:bg-compeletedBg mt-4 rounded-xl">
-              <!-- Side Line -->
-              <span class="bg-orange-300 absolute w-1 h-10.5 rounded-tl-lg rounded-bl-lg right-0 top-3"></span>
-              <!-- Task Content -->
-              <div class="flex py-5 pr-3 pl-4 pb-10 md:py-6 md:pl-6 md:pr-4 gap-x-4">
-                <!-- Checkbox -->
-                <input type="checkbox" class="accent-blue-600 size-4.5 cursor-pointer">
-                <!-- Title & Subtitle & Priority -->
-                <div class="flex flex-col gap-y-4">
-                  <div class="flex flex-col items-start justify-start md:flex-row md:gap-x-3 md:items-center gap-y-1">
-                    <h3 class="font-YekanBakhSemiBold text-sm md:text-base line-through dark:text-white">
-                      خرید میوه و سبزیجات و لبنیات برای خانه
-                    </h3>
-                  </div>
-                </div>
-                <!-- Points -->
-                <div
-                  class="absolute flex flex-col items-center justify-center space-y-1 left-4 md:left-6 md:cursor-pointer">
-                  <span class="size-1 bg-gray-700 dark:bg-white rounded-full"></span>
-                  <span class="size-1 bg-gray-700 dark:bg-white rounded-full"></span>
-                  <span class="size-1 bg-gray-700 dark:bg-white rounded-full"></span>
-                </div>
-              </div>
-            </div>
-            <!-- Task -->
-            <div class="relative border border-gray-200 dark:border-none dark:bg-compeletedBg mt-4 rounded-xl">
-              <!-- Side Line -->
-              <span class="bg-orange-600 absolute w-1 h-10.5 rounded-tl-lg rounded-bl-lg right-0 top-3"></span>
-              <!-- Task Content -->
-              <div class="flex py-5 pr-3 pl-4 md:py-6 md:pl-6 md:pr-4 gap-x-4">
-                <!-- Checkbox -->
-                <input type="checkbox" class="accent-blue-600 size-4.5 cursor-pointer">
-                <!-- Title & Subtitle & Priority -->
-                <div class="flex flex-col gap-y-4">
-                  <div class="flex flex-col items-start justify-start md:flex-row md:gap-x-3 md:items-center gap-y-1">
-                    <h3
-                      class="font-YekanBakhSemiBold text-sm md:text-base dark:text-white max-w-52 md:max-w-none line-through">
-                      تماس با مبل فروشی در مورد تاخیر در ارسال
-                    </h3>
-                  </div>
-                </div>
-                <!-- Points -->
-                <div
-                  class="absolute flex flex-col items-center justify-center space-y-1 left-4 md:left-6 md:cursor-pointer">
-                  <span class="size-1 bg-gray-700 dark:bg-white rounded-full"></span>
-                  <span class="size-1 bg-gray-700 dark:bg-white rounded-full"></span>
-                  <span class="size-1 bg-gray-700 dark:bg-white rounded-full"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Task -->
-          <div class="relative border border-gray-200 dark:border-none dark:bg-compeletedBg mt-4 rounded-xl">
-            <!-- Side Line -->
-            <span class="bg-emerald-600 absolute w-1 h-10.5 rounded-tl-lg rounded-bl-lg right-0 top-3"></span>
-            <!-- Task Content -->
-            <div class="flex py-5 pr-3 pl-4 md:py-6 md:pl-6 md:pr-4 gap-x-4">
-              <!-- Checkbox -->
-              <input type="checkbox" class="accent-blue-600 size-4.5 cursor-pointer">
-              <!-- Title & Subtitle & Priority -->
-              <div class="flex flex-col gap-y-4">
-                <div class="flex flex-col items-start justify-start md:flex-row md:gap-x-3 md:items-center gap-y-1">
-                  <h3
-                    class="font-YekanBakhSemiBold text-sm md:text-base dark:text-white max-w-52 md:max-w-none line-through line-clamp-2">
-                    جلسه با مرتضی در مورد مصاحبه با کارآموز ادمین پنل
-                  </h3>
-                </div>
-              </div>
-              <!-- Points -->
-              <div
-                class="absolute flex flex-col items-center justify-center space-y-1 left-4 md:left-6 md:cursor-pointer">
-                <span class="size-1 bg-gray-700 dark:bg-white rounded-full"></span>
-                <span class="size-1 bg-gray-700 dark:bg-white rounded-full"></span>
-                <span class="size-1 bg-gray-700 dark:bg-white rounded-full"></span>
-              </div>
-            </div>
-          </div>
         </div>
     </div>
     </div>
